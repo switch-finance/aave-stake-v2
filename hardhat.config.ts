@@ -12,6 +12,7 @@ import '@nomiclabs/hardhat-etherscan';
 import '@tenderly/hardhat-tenderly';
 
 export const BUIDLEREVM_CHAIN_ID = 31337;
+export const BSC_TEST_CHAINID = 97;
 
 const DEFAULT_BLOCK_GAS_LIMIT = 12500000;
 const DEFAULT_GAS_PRICE = 102 * 1000 * 1000 * 1000;
@@ -132,6 +133,19 @@ const config: HardhatUserConfig = {
     },
     coverage: {
       url: 'http://localhost:8555',
+    },
+    bsctest: {
+      url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
+      hardfork: HARDFORK,
+      blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
+      gasMultiplier: DEFAULT_GAS_PRICE,
+      chainId: BSC_TEST_CHAINID,
+      accounts: {
+        mnemonic: MNEMONIC,
+        path: MNEMONIC_PATH,
+        initialIndex: 0,
+        count: 20,
+      },
     },
   },
 };

@@ -8,6 +8,7 @@ export const WAD = Math.pow(10, 18).toString();
 export const COOLDOWN_SECONDS = '3600'; // 1 hour in seconds
 export const UNSTAKE_WINDOW = '1800'; // 30 min in seconds
 export const DISTRIBUTION_DURATION = '86400'; // 1 day in seconds
+export const EXTRA_PSM_REWARD = '1';
 
 export const STAKED_AAVE_NAME = 'Staked Aave';
 export const STAKED_AAVE_SYMBOL = 'stkAAVE';
@@ -54,6 +55,7 @@ export const getAaveTokenPerNetwork = (network: eEthereumNetwork): tEthereumAddr
       [eEthereumNetwork.kovan]: '0xe4483afcf0d612c011679C76B61F5b0d27bAF93C',
       [eEthereumNetwork.ropsten]: '0x74dA004A1B81b4d0C79F5820f9FF22647cb1dD95',
       [eEthereumNetwork.main]: '0x9c0435779F5E52CEC404D957C9bAa6f7d674C8bA',
+      [eEthereumNetwork.bsctest]: '0xE12546C2F8626F5F0A9E8D8387f636E6fb189174',
     },
     network
   );
@@ -66,6 +68,7 @@ export const getCooldownSecondsPerNetwork = (network: eEthereumNetwork): tEthere
       [eEthereumNetwork.kovan]: '21600', // 8h
       [eEthereumNetwork.ropsten]: '180', // 3m
       [eEthereumNetwork.main]: '864000', // 10d
+      [eEthereumNetwork.bsctest]: COOLDOWN_SECONDS,
     },
     network
   );
@@ -78,6 +81,7 @@ export const getUnstakeWindowPerNetwork = (network: eEthereumNetwork): tEthereum
       [eEthereumNetwork.kovan]: '10800', // 4h
       [eEthereumNetwork.ropsten]: '240', // 4m
       [eEthereumNetwork.main]: '172800', // 2d
+      [eEthereumNetwork.bsctest]: UNSTAKE_WINDOW,
     },
     network
   );
@@ -90,6 +94,7 @@ export const getAaveAdminPerNetwork = (network: eEthereumNetwork): tEthereumAddr
       [eEthereumNetwork.kovan]: '0x8134929c3dcb1b8b82f27f53424b959fb82182f2', // Aave Governance
       [eEthereumNetwork.ropsten]: '0xEd93e49A2d75beA505fD4D1A0Dff745f69F2E997', // Aave Governance
       [eEthereumNetwork.main]: '0x8a2Efd9A790199F4c94c6effE210fce0B4724f52', // Aave Governance
+      [eEthereumNetwork.bsctest]: '0xe60F698D4D124D1866EE308d68384f856c5A3cf0',
     },
     network
   );
@@ -102,6 +107,20 @@ export const getDistributionDurationPerNetwork = (network: eEthereumNetwork): tE
       [eEthereumNetwork.kovan]: '864000',
       [eEthereumNetwork.ropsten]: '864000',
       [eEthereumNetwork.main]: '12960000', // 5 months (30 days) in seconds
+      [eEthereumNetwork.bsctest]: '864000',
+    },
+    network
+  );
+
+export const getExtraPsmRewardPerNetwork = (network: eEthereumNetwork): tEthereumAddress =>
+  getParamPerNetwork<tEthereumAddress>(
+    {
+      [eEthereumNetwork.coverage]: EXTRA_PSM_REWARD,
+      [eEthereumNetwork.hardhat]: EXTRA_PSM_REWARD,
+      [eEthereumNetwork.kovan]: EXTRA_PSM_REWARD,
+      [eEthereumNetwork.ropsten]: EXTRA_PSM_REWARD,
+      [eEthereumNetwork.main]: EXTRA_PSM_REWARD,
+      [eEthereumNetwork.bsctest]: EXTRA_PSM_REWARD,
     },
     network
   );
@@ -114,6 +133,7 @@ export const getAaveIncentivesVaultPerNetwork = (network: eEthereumNetwork): tEt
       [eEthereumNetwork.kovan]: '',
       [eEthereumNetwork.ropsten]: '',
       [eEthereumNetwork.main]: '0x253f7b06c1d60c1fbbc9d82c301327eb86e3ba81',
+      [eEthereumNetwork.bsctest]: '0xe60F698D4D124D1866EE308d68384f856c5A3cf0',
     },
     network
   );

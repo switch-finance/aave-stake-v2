@@ -7,6 +7,7 @@ export enum eEthereumNetwork {
   ropsten = 'ropsten',
   main = 'main',
   tenderly = 'tenderly',
+  bsctest = 'bsctest',
 }
 
 export enum eContractid {
@@ -14,6 +15,7 @@ export enum eContractid {
   StakedAave = 'StakedAave',
   StakedAaveImpl = 'StakedAaveImpl',
   AaveIncentivesController = 'AaveIncentivesController',
+  AaveIncentivesControllerImpl = 'AaveIncentivesControllerImpl',
   IERC20Detailed = 'IERC20Detailed',
   AdminUpgradeabilityProxy = 'AdminUpgradeabilityProxy',
   InitializableAdminUpgradeabilityProxy = 'InitializableAdminUpgradeabilityProxy',
@@ -47,4 +49,5 @@ export interface iParamsPerNetwork<T> {
   [eEthereumNetwork.kovan]: T;
   [eEthereumNetwork.ropsten]: T;
   [eEthereumNetwork.main]: T;
+  [eEthereumNetwork.bsctest]: T;
 }

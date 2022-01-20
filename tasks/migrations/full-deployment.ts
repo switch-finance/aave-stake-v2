@@ -5,7 +5,7 @@ import { eContractid, eEthereumNetwork } from '../../helpers/types';
 import { checkVerification } from '../../helpers/etherscan-verification';
 import { getAaveAdminPerNetwork } from '../../helpers/constants';
 
-task('common-deployment', 'Deployment in for Main, Kovan and Ropsten networks')
+task('full-deployment', 'Deployment in for Main, Kovan, Ropsten and BscTest networks')
   .addFlag('verify', 'Verify StakedAave and InitializableAdminUpgradeabilityProxy contract.')
   .addOptionalParam(
     'vaultAddress',
@@ -31,9 +31,11 @@ task('common-deployment', 'Deployment in for Main, Kovan and Ropsten networks')
 
     await DRE.run(`deploy-${eContractid.StakedAave}`, { verify, vaultAddress, aaveAddress });
 
-    await DRE.run(`initialize-${eContractid.StakedAave}`, {
-      admin: aaveAdmin,
-    });
+    await DRE.run(`deploy-${eContractid.AaveIncentivesController}`, { verify, vaultAddress });
 
-    console.log(`\n✔️ Finished the deployment of the Aave Token ${network} Enviroment. ✔️`);
+    await DRE.run(`initialize-${eContractid.StakedAave}`, { admin: aaveAdmin });
+
+    await DRE.run(`initialize-${eContractid.AaveIncentivesController}`, { admin: aaveAdmin });
+
+    console.log(`\n✔️ Finished the deployment of the StkAave Token ${network} Enviroment. ✔️`);
   });

@@ -404,6 +404,24 @@ export const getAaveIncentivesController = getContractFactory<AaveIncentivesCont
   eContractid.AaveIncentivesController
 );
 
+export const getAaveIncentivesControllerProxy = async (address?: tEthereumAddress) => {
+  return await getContract<InitializableAdminUpgradeabilityProxy>(
+    eContractid.InitializableAdminUpgradeabilityProxy,
+    address ||
+      (await getDb().get(`${eContractid.AaveIncentivesController}.${DRE.network.name}`).value())
+        .address
+  );
+};
+
+export const getAaveIncentivesControllerImpl = async (address?: tEthereumAddress) => {
+  return await getContract<AaveIncentivesController>(
+    eContractid.AaveIncentivesController,
+    address ||
+      (await getDb().get(`${eContractid.AaveIncentivesControllerImpl}.${DRE.network.name}`).value())
+        .address
+  );
+};
+
 export const getIErc20Detailed = getContractFactory<Ierc20Detailed>(eContractid.IERC20Detailed);
 
 export const getATokenMock = getContractFactory<ATokenMock>(eContractid.ATokenMock);
